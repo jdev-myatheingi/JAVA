@@ -15,27 +15,33 @@ public class blogController
 	@Autowired
 	public BlogService blogService;
 
-	@GetMapping("/blogs")
+	@GetMapping("/blogs/get_all")
 	public ResponseEntity<List<BlogModel>> getBlogs()
 	{
 		return blogService.getAllBlogs();
 	}
 
-	@GetMapping("/blogs/{id}")
+	@GetMapping("/blogs/get/{id}")
 	public ResponseEntity<BlogModel> getBlog(@PathVariable("id") Long id)
 	{
 		return blogService.getBlog(id);
 	}
 
-	@GetMapping("/put")
-	public String putBlog()
+	@PostMapping("/blogs/create")
+	public ResponseEntity<Long> createBlog(@RequestBody BlogModel blog)
 	{
-		return "put";
+		return blogService.createBlog(blog);
 	}
 
-	@GetMapping("/delete")
-	public String deleteBlog()
+	@PutMapping("/blogs/update/{id}")
+	public ResponseEntity<String> updateBlog(@PathVariable("id") Long id, @RequestBody BlogModel blog)
 	{
-		return "delete";
+		return  blogService.updateBlog(id,blog);
+	}
+
+	@DeleteMapping("/blogs/delete/{id}")
+	public ResponseEntity<String> deleteBlog(@PathVariable("id") Long id)
+	{
+		return blogService.deleteBlog(id);
 	}
 }

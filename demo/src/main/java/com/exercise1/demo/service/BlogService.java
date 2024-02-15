@@ -8,5 +8,12 @@ import java.util.List;
 public interface BlogService {
     public ResponseEntity<List<BlogModel>> getAllBlogs();
 
-    public ResponsEntity<BlogModel> getBlog(Long id);
+    public ResponseEntity<BlogModel> getBlog(Long id);
+
+    public ResponseEntity<Long> createBlog(BlogModel blog);
+
+    public ResponseEntity<String> updateBlog(Long id,BlogModel blog);
+
+    public ResponseEntity<String> deleteBlog(Long id);
+
 }
